@@ -11,11 +11,12 @@ rm note.sync
 rsync ~/notefile root@167.172.23.63:~/notefile
 echo "Synced!"
 ;;
-#Figure out how to make this a wildcard comline arg.
+# Make this a wildcard with *:.
+# Or Make a case to add here from CL.
 B:|TD:|J:|Q:) 
 cat ~/notefile | grep ^"$1" 
 ;;
-#Insert proper exit and keyboard input.
+#Insert proper exit.
 *)
 echo "Hit [ENTER] to save! Hit [ctrl-d] to exit!"
 cat >> ~/notefile 
