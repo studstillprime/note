@@ -1,24 +1,24 @@
 #!/bin/bash
 
 case $1 in
-lk)
-cat ~/notefile
-;;
-lks)
-rsync root@167.172.23.63:~/notefile note.sync
-cat -n ~/notefile note.sync | sort -uk2 | sort -nk1 | cut -f2- | tee ~/notefile
-rm note.sync
-rsync ~/notefile root@167.172.23.63:~/notefile
-echo "Synced!"
-;;
+  lk) # Look at notes!
+    cat ~/notefile
+    ;;
+  lks) # Sync notes with remote and then print them to SDTOUT
+    rsync root@167.172.23.63:~/notefile note.sync
+    cat -n ~/notefile note.sync | sort -uk2 | sort -nk1 | cut -f2- | tee ~/notefile
+    rm note.sync
+    rsync ~/notefile root@167.172.23.63:~/notefile
+    echo "Synced!"
+    ;;
 # Make this a wildcard with *:.
 # Or Make a case to add here from CL.
-B:|TD:|J:|Q:) 
-cat ~/notefile | grep ^"$1" 
-;;
+  B:|TD:|J:|Q:) # Prints front tagged notes only!
+    cat ~/notefile | grep ^"$1" 
+    ;;
 #Insert proper exit.
-*)
-echo "Hit [ENTER] to save! Hit [ctrl-d] to exit!"
-cat >> ~/notefile 
-;;
+  *) # Add notes to notefile!
+    echo "Hit [ENTER] to save! Hit [ctrl-d] to exit!"
+    cat >> ~/notefile 
+    ;;
 esac
