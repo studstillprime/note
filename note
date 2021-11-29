@@ -5,10 +5,10 @@ case $1 in
     cat ~/notefile
     ;;
   lks) # Sync notes with remote and then print them to SDTOUT
-    rsync root@167.172.23.63:~/notefile note.sync
+    rsync root@167.172.23.63:~/notefile note.sync #Wow I definitely know now to not hardcode IPs! 
     cat -n ~/notefile note.sync | sort -uk2 | sort -nk1 | cut -f2- | tee ~/notefile
     rm note.sync
-    rsync ~/notefile root@167.172.23.63:~/notefile
+    rsync ~/notefile root@167.172.23.63:~/notefile 
     echo "Synced!"
     ;;
 # Make this a wildcard with *:.
